@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ln -sf $(which docker) ./symlinks/to-docker
+ln -sf $(which fig) ./symlinks/to-fig

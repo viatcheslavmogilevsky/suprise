@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  tasks:
+    - include: bundle-tasks.yml
+      vars:
+        project_root: /edge

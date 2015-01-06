@@ -1,0 +1,35 @@
+---
+- copy:
+    src: "{{ project_root }}/{{item}}"
+    dest: "/gemfiles/{{ item }}"
+  with_items:
+    - Gemfile
+    - Gemfile.lock
+- file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /gemfiles/vendor
+    - /gemfiles/vendor/gems
+- copy:
+    src: "{{ project_root }}/vendor/gems/"
+    dest: "/gemfiles/vendor/gems/"
+
+- replace:
+    dest: "{{ item }}"
+    regexp: 'https://rubygems\.org'
+    replace: 'http://rubygems.org'
+  with_items:
+    - /gemfiles/Gemfile
+    - /gemfiles/Gemfile.lock
+- replace:
+    dest: "{{ item }}"
+    regexp: 'git@github\.com:'
+    replace: 'http://github.com/'
+  with_items:
+    - /gemfiles/Gemfile
+    - /gemfiles/Gemfile.lock
+
+- command: "bundle install --gemfile='./Gemfile' --deployment --binstubs='/app_bin' --path='/bundle'"
+  args:
+    chdir: /gemfiles

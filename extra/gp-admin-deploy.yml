@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - include: /suprise/setup_fig.yml
+    - command: "fig run --rm gpAdminBundle"
+      environment:
+        FIG_FILE: /figdir/fig.yml
+    #- command: /
