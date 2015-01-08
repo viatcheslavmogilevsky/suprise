@@ -1,9 +1,0 @@
----
-- include_vars: vars.yml
-- command: /suprise/get_dir
-  register: get_dir_out
-- set_fact:
-    suprise_dir: "{{ get_dir_out.stdout }}"
-- template:
-    src: fig.yml.j2
-    dest: /figdir/fig.yml

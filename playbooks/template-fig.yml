@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - command: /playbooks/get-current-dir
+      register: current_dir_result
+    - set_fact:
+        current_dir: "{{ current_dir_result.stdout }}"
+    - template:
+        src: /current_dir/suprise/fig.yml.j2
+        dest: /figdir/fig.yml

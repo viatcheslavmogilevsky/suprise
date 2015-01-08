@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker inspect -f '{{ index .Volumes "/suprise" }}' $HOSTNAME

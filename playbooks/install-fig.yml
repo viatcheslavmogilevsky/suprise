@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  tasks:
+    - get_url:
+        url: "https://github.com/docker/fig/releases/download/1.0.1/fig-{{ ansible_system }}-{{ ansible_machine }}"
+        dest: "/bin/fig"
+
+    - file:
+        path: '/bin/fig'
+        mode: 'a+x'
